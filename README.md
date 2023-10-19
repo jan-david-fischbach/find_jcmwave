@@ -3,7 +3,7 @@ A minimal package that finds the third party support library of jcmwave by looki
 Install by:
 
 ```bash
-pip install find_jcmwave
+pip install find-jcmwave
 ```
 
 ```python
