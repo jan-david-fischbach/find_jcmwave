@@ -1,4 +1,4 @@
-# Find JCMWAVE v0.0.4
+# Find JCMWAVE v0.0.5
 A minimal package that finds the third party support library of jcmwave by looking at the `JCMROOT` environment variable. 
 Install by:
 
