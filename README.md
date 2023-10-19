@@ -1,5 +1,10 @@
 # Find JCMWAVE v0.0.2
-A minimal package that finds the third party support library of jcmwave by looking at the `JCMROOT` environment variable. Import as 
+A minimal package that finds the third party support library of jcmwave by looking at the `JCMROOT` environment variable. 
+Install by:
+
+```bash
+pip install find_jcmwave
+```
 
 ```python
 import find_jcmwave as jcmwave
