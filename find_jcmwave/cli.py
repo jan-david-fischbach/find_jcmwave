@@ -28,7 +28,10 @@ def cli():
         parser.print_help()
 
 def link_lib():
-    os.symlink(f"{module_path}/jcmwave", f"{site.getsitepackages()[0]}/jcmwave")
+    target = f"{site.getsitepackages()[0]}/jcmwave"
+    if os.path.islink(target):
+        os.remove(target)
+    os.symlink(f"{module_path}/jcmwave", target)
     print("linked jcmwave module")
 
 def link_interpreter():
@@ -49,4 +52,5 @@ def link_interpreter():
     for new_numpy_file in glob(f"{env_site_packages}/numpy*"):
         file_or_dirname = os.path.basename(os.path.normpath(new_numpy_file))
         os.symlink(new_numpy_file, f"{site_packages}/{file_or_dirname}")
+    print("linked packages from your env to JCM")
     
