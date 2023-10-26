@@ -1,6 +1,6 @@
 import argparse
 import os
-import sys
+import shutil
 import site
 from . import module_path
 
@@ -32,5 +32,21 @@ def link_lib():
     print("linked jcmwave module")
 
 def link_interpreter():
-    os.rename(f"{module_path}/bin/python", f"{module_path}/bin/old_python")
-    os.symlink(sys.executable, f"{module_path}/bin/python")
+    from glob import glob
+    site_packages = glob(f"{module_path}/lib/python*/site-packages")[0]
+    env_site_packages = site.getsitepackages()[0]
+
+    for old_lib in ["numpy", "scipy"]:
+        for old_lib_file in glob(f"{site_packages}/{old_lib}*"):
+            if os.path.islink(old_lib_file):
+                os.remove(old_lib_file)
+            else:
+                shutil.rmtree(old_lib_file)
+
+    with open(f"{site_packages}/from_env.pth", "w") as f:
+        f.write(env_site_packages)
+
+    for new_numpy_file in glob(f"{env_site_packages}/numpy*"):
+        file_or_dirname = os.path.basename(os.path.normpath(new_numpy_file))
+        os.symlink(new_numpy_file, f"{site_packages}/{file_or_dirname}")
+    
