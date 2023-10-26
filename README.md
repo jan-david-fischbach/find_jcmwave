@@ -30,3 +30,12 @@ Make environment packages available from jcm spawned python:
 ```bash
 find-jcm -i
 ```
+To use packages in the templating/callbacks make sure to update the site-packages before importing packages from your env:
+```python
+import site
+site.main()
+
+...
+
+import jax
+```
