@@ -12,3 +12,6 @@ license = { file = "LICENSE" }
 dependencies = ["numpy"]
 requires-python = ">=3.9"
 keywords = ["jcm", "jcmwave", "fem"]
+
+[project.scripts]
+find-jcm = "find_jcmwave.cli:cli"
