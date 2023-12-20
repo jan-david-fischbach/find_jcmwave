@@ -9,7 +9,7 @@ authors = [{name="Jan David Fischbach", email="mail@jan-dav.id" }]
 description = "Dynamically link jcmwave from JCMROOT into your environment"
 readme = "README.md"
 license = { file = "LICENSE" }
-dependencies = ["numpy"]
+dependencies = ["numpy", "requests", "colorama"]
 requires-python = ">=3.9"
 keywords = ["jcm", "jcmwave", "fem"]
 

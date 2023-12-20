@@ -39,7 +39,7 @@ def link_interpreter():
     site_packages = glob(f"{module_path}/lib/python*/site-packages")[0]
     env_site_packages = site.getsitepackages()[0]
 
-    for old_lib in ["numpy", "scipy"]:
+    for old_lib in ["numpy", "scipy", "matplotlib", "importlib"]:
         for old_lib_file in glob(f"{site_packages}/{old_lib}*"):
             if os.path.islink(old_lib_file):
                 os.remove(old_lib_file)
@@ -49,8 +49,9 @@ def link_interpreter():
     with open(f"{site_packages}/from_env.pth", "w") as f:
         f.write(env_site_packages)
 
-    for new_numpy_file in glob(f"{env_site_packages}/numpy*"):
-        file_or_dirname = os.path.basename(os.path.normpath(new_numpy_file))
-        os.symlink(new_numpy_file, f"{site_packages}/{file_or_dirname}")
+    for new_lib in ["numpy", "scipy", "matplotlib", "importlib"]:
+        for new_lib_file in glob(f"{env_site_packages}/{new_lib}*"):
+            file_or_dirname = os.path.basename(os.path.normpath(new_lib_file))
+            os.symlink(new_lib_file, f"{site_packages}/{file_or_dirname}")
     print("linked packages from your env to JCM")
     
