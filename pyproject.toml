@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "find_jcmwave"
-version = "1.0.1"
+version = "1.0.2"
 authors = [{name="Jan David Fischbach", email="mail@jan-dav.id" }]
 description = "Dynamically link jcmwave from JCMROOT into your environment"
 readme = "README.md"
